@@ -34,7 +34,6 @@
         import { FlakesTexture } from "./FlakesTexture.js";
     
 
-        alert("working version but can't import or export file")
     let camera, scene, renderer;
 
     init();
@@ -50,7 +49,7 @@
 
         //load hdri
         new RGBELoader()
-            .load('./4kmountain.hdr', function (texture) {
+            .load('./hdr/studio_small_08_4k.hdr', function (texture) {
 
                 texture.mapping = THREE.EquirectangularReflectionMapping;
 

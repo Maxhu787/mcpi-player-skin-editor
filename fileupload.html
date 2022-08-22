@@ -43,8 +43,8 @@
         function init() {
             document.getElementById('userImage').addEventListener('change', function (e) {
                 var userImage = e.target.files[0];
-                let userImageURL = URL.createObjectURL( userImage );
-            
+                let userImageURL = URL.createObjectURL(userImage);
+
                 const container = document.createElement('div');
                 document.body.appendChild(container);
                 //scene setup stuff
@@ -54,7 +54,7 @@
 
                 //load hdri
                 new RGBELoader()
-                    .load('./4kmountain.hdr', function (texture) {
+                    .load('./hdr/studio_small_08_4k.hdr', function (texture) {
 
                         texture.mapping = THREE.EquirectangularReflectionMapping;
 
@@ -72,6 +72,10 @@
                             var texture = textureLoader.load(userImageURL);
                             texture.encoding = THREE.sRGBEncoding;
                             texture.flipY = false;
+
+                            texture.offset.x = 0.5; // 0.0 - 1.0
+                            texture.offset.y = 0.5; // 0.0 - 1.0
+
                             const material = new THREE.MeshBasicMaterial({ map: texture });
 
                             model.traverse((o) => {
@@ -99,7 +103,7 @@
                 controls.update();
 
                 window.addEventListener('resize', onWindowResize);
-                })
+            })
         }
 
         function onWindowResize() {
