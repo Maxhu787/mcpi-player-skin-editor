@@ -111,22 +111,23 @@
                 const directionalLight = new THREE.DirectionalLight(0x00ff00, 0.1);
                 scene.add(directionalLight);
 
-                
-                document.addEventListener("keydown", (event) => {
-                    if (event.code == "KeyW") {
+                var map = {}; // You could also use an array
+                onkeydown = onkeyup = function (e) {
+                    e = e || event; // to deal with IE
+                    map[e.keyCode] = e.type == 'keydown';
+                    if (map[87]) {
                         plane.position.z -= 50;
                     }
-                    if (event.code == "KeyA") {
+                    if (map[65]) {
                         plane.position.x -= 50;
                     }
-                    if (event.code == "KeyS") {
+                    if (map[83]) {
                         plane.position.z += 50;
                     }
-                    if (event.code == "KeyD") {
+                    if (map[68]) {
                         plane.position.x += 50;
                     }
-                });
-
+                }
 
 
                 renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -171,11 +172,13 @@
 
                 requestAnimationFrame(animate);
 
-                var delta = clock.getDelta();
+                /*var delta = clock.getDelta();
 
-                if (mixer) mixer.update(delta);
+                if (mixer) mixer.update(delta);*/
+                setTimeout(function () {
+                    renderer.render(scene, camera);
+                }, 100);
 
-                renderer.render(scene, camera);
 
             }
     </script>
