@@ -47,6 +47,7 @@
     <script type="module" src="./GLTFLoader.js"></script>
     <script type="module" src="./RGBELoader.js"></script>
     <script type="module" src="./FlakesTexture.js"></script>
+    <script type="module" src="./jquery-3.6.0.js"></script>
     <script type="module">
             import * as THREE from 'three';
             import { OrbitControls } from './OrbitControls.js';
@@ -70,10 +71,17 @@
                 scene = new THREE.Scene();
                 clock = new THREE.Clock();
 
+/*
+                document.addEventListener('mousemove', function (e) {
+                    let scale = -0.01;
+                    camera.rotateY(e.movementX * scale);
+                    camera.rotateX(e.movementY * scale);
+                    camera.rotation.z = 0; //this is important to keep the camera level..
+                })*/
+
                 //load hdri
                 new RGBELoader()
                     .load('./hdr/solitude_night_4k.hdr', function (texture) {
-
                         texture.mapping = THREE.EquirectangularReflectionMapping;
 
                         scene.background = texture;
@@ -83,10 +91,32 @@
 
                         const loader = new GLTFLoader()
                         loader.load('./steve rigged/scene.gltf', function (gltf) {
-
                             mixer = new THREE.AnimationMixer(gltf.scene);
                             var action = mixer.clipAction(gltf.animations[0]);
                             action.play();
+
+                            var model = gltf.scene;
+                            document.addEventListener('mousemove', function (e) {
+                                let scale = -0.01;
+                                model.rotateY(e.movementX * scale);
+                            })
+                            var map = {}; // You could also use an array
+                            onkeydown = onkeyup = function (e) {
+                                e = e || event; // to deal with IE
+                                map[e.keyCode] = e.type == 'keydown';
+                                if (map[87]) {
+                                    model.translateZ(50);
+                                }
+                                if (map[65]) {
+                                    model.translateX(50);
+                                }
+                                if (map[83]) {
+                                    model.translateZ(-50);
+                                }
+                                if (map[68]) {
+                                    model.translateX(-50);
+                                }
+                            }
 
                             scene.add(gltf.scene);
                         });
@@ -111,7 +141,7 @@
                 const directionalLight = new THREE.DirectionalLight(0x00ff00, 0.1);
                 scene.add(directionalLight);
 
-                var map = {}; // You could also use an array
+                /*var map = {}; // You could also use an array
                 onkeydown = onkeyup = function (e) {
                     e = e || event; // to deal with IE
                     map[e.keyCode] = e.type == 'keydown';
@@ -127,7 +157,7 @@
                     if (map[68]) {
                         plane.position.x += 50;
                     }
-                }
+                }*/
 
 
                 renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -148,7 +178,19 @@
                 window.addEventListener('resize', onWindowResize);
 
             }
-
+            let escape = false;
+            $(document).keyup(function (e) {
+                if (e.key === "Escape") { // escape key maps to keycode `27`
+                    if(escape == false) {
+                        $('body').css('cursor', 'none');
+                        escape = true;
+                    } else {
+                        escape = false;
+                        $('body').css('cursor', 'auto');
+                    }
+                    console.log(escape)
+                }
+            });
 
             function onWindowResize() {
 
@@ -172,14 +214,10 @@
 
                 requestAnimationFrame(animate);
 
-                /*var delta = clock.getDelta();
+                var delta = clock.getDelta();
 
-                if (mixer) mixer.update(delta);*/
-                setTimeout(function () {
-                    renderer.render(scene, camera);
-                }, 100);
-
-
+                if (mixer) mixer.update(delta);
+                renderer.render(scene, camera);
             }
     </script>
 </body>
