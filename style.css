@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&family=Montserrat:wght@300&family=Orbitron&family=Work+Sans:wght@300&display=swap');
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.navbar-header {
+    z-index: 999;
+    background: #ffa500;
+    position: fixed;
+    width: 101%;
+    margin-top: 0px;
+    margin-left: -10px;
+    transition: all .3s;
+    height: 65px;
+}
+
+.navbar-header::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.logo {
+    height: 55px;
+    width: 54px;
+    border-radius: 100px;
+    float: left;
+    margin-left: -10%;
+    margin-top: 4px;
+    user-select: none;
+    transition: all .1s ease-out;
+}
+
+.logo:hover {
+    box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px;
+    transform: translateY(-3.5px);
+}
+
+.logo:active {
+    margin-top: 8px;
+    box-shadow: #D6D6E7 0 3px 7px inset;
+}
+
+nav {
+    z-index: 999;
+    float: right;
+    text-transform: uppercase;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav li {
+    display: inline-block;
+    margin-left: 60px;
+    padding-top: 23px;
+    position: relative;
+}
+
+nav div {
+    display: inline-block;
+    margin-left: 60px;
+    padding-top: 23px;
+    position: relative;
+}
+
+nav>ul li a {
+    color: #000;
+    text-transform: uppercase;
+    font-family: 'Orbitron', Arial, Helvetica, sans-serif, sans-serif;
+    font-size: 14px;
+    transition: color .2s ease-in-out;
+    text-decoration: none;
+}
+
+nav>ul li a:hover {
+    color: #fff;
+}
+
+nav>ul li a::before {
+    content: '';
+    display: block;
+    height: 5px;
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    width: 0%;
+    transition: all ease-in-out 250ms;
+    margin-top: -3px;
+}
+
+nav>ul li a:hover::before {
+    width: 100%;
+}

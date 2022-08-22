@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
     <title>three js</title>
     <script type="importmap">
                 {
@@ -22,7 +23,24 @@
 </head>
 
 <body>
-    <input id="userImage" type="file" />
+    <header id="nav" class="navbar-header">
+        <div class="container">
+            <div class="logo-container">
+                <a class="logo-header" href="./index.html">
+                    <img class="logo" alt="logo" src="./111.jpeg">
+                </a>
+            </div>
+            <nav>
+                <ul id="main-nav">
+                    <li><a href="./index.html">index</a></li>
+                    <li><a href="./editor.html">editor</a></li>
+                    <li><a href="https://github.com/maxhu787/mcpi-player-skin-editor" target="_blank">github</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <input style="margin-top: 100px;" id="userImage" type="file" />
     <script src="./three.js"></script>
     <script type="module" src="./GLTFLoader.js"></script>
     <script type="module" src="./RGBELoader.js"></script>
