@@ -63,16 +63,15 @@
                         var model = gltf.scene;
                         //var newMaterial = new THREE.MeshStandardMaterial({ color: 0xffc200 });
                         var textureLoader = new THREE.TextureLoader();
-                        loader.setCrossOrigin("");
+                        loader.setCrossOrigin(""); //2022_01_16_tuxedo-steve-19723769 model/textures/02_-_Default_baseColor.png
                         var texture = textureLoader.load("./2022_01_16_tuxedo-steve-19723769.png");
                         texture.encoding = THREE.sRGBEncoding;
-                        /*texture.flipY = false;
-                        texture.flipX = false;*/
-                        texture.wrapS = THREE.RepeatWrapping;
-                        texture.repeat.x = - 1;
-
-                        texture.offset.x = 3;
-                        //texture.offset.y = 0;
+                        texture.flipY = true;
+                        
+                        /*texture.wrapS = THREE.RepeatWrapping;
+                        texture.repeat.x = - 1;*/
+                        texture.offset.x = 0;
+                        texture.offset.y = 0;
 
                         const material = new THREE.MeshBasicMaterial({ map: texture });
 
