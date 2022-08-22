@@ -71,10 +71,7 @@
                             loader.setCrossOrigin("");
                             var texture = textureLoader.load(userImageURL);
                             texture.encoding = THREE.sRGBEncoding;
-                            texture.flipY = false;
-
-                            texture.offset.x = 0.5; // 0.0 - 1.0
-                            texture.offset.y = 0.5; // 0.0 - 1.0
+                            texture.flipY = true;
 
                             const material = new THREE.MeshBasicMaterial({ map: texture });
 
