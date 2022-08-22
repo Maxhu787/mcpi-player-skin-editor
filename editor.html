@@ -60,6 +60,8 @@
 
         function init() {
             document.getElementById('userImage').addEventListener('change', function (e) {
+                document.getElementById("userImage").style.display = 'none';
+                
                 var userImage = e.target.files[0];
                 let userImageURL = URL.createObjectURL(userImage);
 
@@ -90,6 +92,7 @@
                             var texture = textureLoader.load(userImageURL);
                             texture.encoding = THREE.sRGBEncoding;
                             texture.flipY = true;
+
 
                             const material = new THREE.MeshBasicMaterial({ map: texture });
 
