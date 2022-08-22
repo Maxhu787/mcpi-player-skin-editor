@@ -22,7 +22,6 @@
 </head>
 
 <body>
-    <input id="userImage" type="file" />
     <script src="./three.js"></script>
     <script type="module" src="./GLTFLoader.js"></script>
     <script type="module" src="./RGBELoader.js"></script>
@@ -33,7 +32,9 @@
         import {GLTFLoader} from "./GLTFLoader.js";
         import { RGBELoader } from "./RGBELoader.js";
         import { FlakesTexture } from "./FlakesTexture.js";
+    
 
+        alert("working version but can't import or export file")
     let camera, scene, renderer;
 
     init();
@@ -58,27 +59,8 @@
 
                 render();
 
-                // model
-                /*const loader = new GLTFLoader()
-                loader.load('./model/scene.gltf', function (gltf) {
-                    var model = gltf.scene;
-                    scene.add(gltf.scene);
-                    render();
-
-                });*/
                 const loader = new GLTFLoader()
                 loader.load('./model/scene.gltf', function (gltf) {
-                    var model = gltf.scene;
-                    //var newMaterial = new THREE.MeshStandardMaterial({ color: 0xffc200 });
-
-                    var textureLoader = new THREE.TextureLoader();
-                    loader.setCrossOrigin("");
-                    var texture = textureLoader.load("./default.png");
-                    const material = new THREE.MeshBasicMaterial({ map: texture });
-
-                    model.traverse((o) => {
-                        if (o.isMesh) o.material = material;
-                    });
                     scene.add(gltf.scene);
                     render();
 

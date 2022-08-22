@@ -66,7 +66,7 @@
                         const loader = new GLTFLoader()
                         loader.load('./model/scene.gltf', function (gltf) {
                             var model = gltf.scene;
-
+                            //var newMaterial = new THREE.MeshStandardMaterial({ color: 0xffc200 });
                             var textureLoader = new THREE.TextureLoader();
                             loader.setCrossOrigin("");
                             var texture = textureLoader.load(userImageURL);
