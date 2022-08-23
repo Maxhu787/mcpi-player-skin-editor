@@ -129,7 +129,7 @@
 
                 texture.repeat.set(4, 4);
 
-                const geometry = new THREE.PlaneGeometry(4000, 4000);
+                const geometry = new THREE.PlaneGeometry(5000, 5000);
                 const material = new THREE.MeshLambertMaterial({ map: texture });
                 const plane = new THREE.Mesh(geometry, material);
                 plane.material.side = THREE.DoubleSide;
@@ -215,8 +215,7 @@
                 requestAnimationFrame(animate);
 
                 var delta = clock.getDelta();
-
-                if (mixer) mixer.update(delta);
+                if(mixer) mixer.update(delta);
                 renderer.render(scene, camera);
             }
     </script>
